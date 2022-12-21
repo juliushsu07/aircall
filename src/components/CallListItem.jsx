@@ -1,23 +1,30 @@
 import React from 'react';
 import {FcMissedCall} from 'react-icons/fc';
+import moment from 'moment/moment';
 
-function CallListItem({ from, time, date, via, call_type, is_archived  }) {
+function CallListItem({from, via, created_at}) {  
+
   return (
     <div className="callerWrapper">
 
       <div className='date'>
-        {date}
+        {moment.utc(created_at).format('MMMM, DD YYYY')}
       </div>
 
       <button type="button" className="callerButton">
       <FcMissedCall className="caller-icon" />
-        <p>{from}</p>
+        <h5>
+          {from}
+        </h5>
         <p>tried to call on {via}</p>
-        <p>{time}</p>
+        <div className='time'>
+          {moment.utc(created_at).format('hh:mm:A', { trim: false })}
+        </div>
       </button>
-
+      
     </div>
   )
+  
 }
 
 export default CallListItem

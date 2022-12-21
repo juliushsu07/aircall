@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CallListItem from './CallListItem.jsx';
-import callerData from "../data/calls.json";
 import {HiOutlineArchive} from 'react-icons/hi';
+import useFilterCalls from '../hooks/useFilterCalls.js';
+import calls from "../data/calls.json";
 
 function CallList() {
-  const [callers] = useState(callerData);
+  const {all, missedInboundUnarchived} = useFilterCalls(calls);
 
   return (
       <div>
@@ -14,15 +15,16 @@ function CallList() {
         </button>
 
         <ul>
-        {callers.map((caller) => (
+        {missedInboundUnarchived(calls).map((call) => (
           <CallListItem
-          key={caller.id}
-          from={caller.from}
-          time={caller.time}
-          date={caller.date}
-          via={caller.via}
-          call_type={caller.call_type}
-          is_archived={caller.is_archived}
+          key={call.id}
+          direction={call.direction}
+          from={call.from}
+          via={call.via}
+          duration={call.duration}
+          call_type={call.call_type}
+          is_archived={call.is_archived}
+          created_at={call.created_at}
           />
         ))}
       </ul>
