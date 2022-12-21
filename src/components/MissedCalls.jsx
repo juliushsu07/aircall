@@ -2,13 +2,21 @@ import React from "react";
 import { HiOutlineArchive } from "react-icons/hi";
 import useFilterCalls from "../hooks/useFilterCalls.js";
 import CallItem from "./CallItem.jsx";
+import axios from "axios";
 
-function MissedCalls({ calls }) {
+function MissedCalls({ calls, setCalls }) {
   const { missedInboundUnarchived } = useFilterCalls();
+
+  const onArchivedAll = () => {
+    missedInboundUnarchived(calls).map((call) => {
+      call.is_archived = "archived";
+    });
+    setCalls([...calls]);
+  };
 
   return (
     <div>
-      <button type="button" className="callerButton">
+      <button type="button" onClick={onArchivedAll} className="callerButton">
         <HiOutlineArchive className="caller-icon" />
         Archive all calls
       </button>

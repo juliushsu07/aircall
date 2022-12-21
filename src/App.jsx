@@ -20,7 +20,7 @@ const App = () => {
         const calls = [...res.data];
         setCalls(calls);
       });
-  }, [calls]);
+  }, []);
 
   return (
     <div className="container">
@@ -28,9 +28,9 @@ const App = () => {
         <Header />
         <div className="container-view">
           <Routes>
-          <Route path="/" element={<MissedCalls calls={calls} />} />
-            <Route path="/allcalls" element={<AllCalls calls={calls} />} />
-            <Route path="/archived" element={<ArchivedCalls calls={calls} />} />
+          <Route path="/" element={<MissedCalls calls={calls} setCalls={setCalls}/>} />
+            <Route path="/allcalls" element={<AllCalls calls={calls} setCalls={setCalls}/>} />
+            <Route path="/archived" element={<ArchivedCalls calls={calls} setCalls={setCalls}/>} />
           </Routes>
         </div>
       </Router>
