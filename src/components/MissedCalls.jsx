@@ -1,8 +1,12 @@
 import React from "react";
-import { HiOutlineArchive } from "react-icons/hi";
 import useFilterCalls from "../hooks/useFilterCalls.js";
 import CallItem from "./CallItem.jsx";
 import axios from "axios";
+
+import { HiOutlineArchive } from "react-icons/hi";
+
+import { CallListContainer } from "./styles/CallListContainer.styles";
+
 
 function MissedCalls({ calls, setCalls }) {
   const { missedInboundUnarchived } = useFilterCalls();
@@ -15,7 +19,7 @@ function MissedCalls({ calls, setCalls }) {
   };
 
   return (
-    <div>
+    <CallListContainer>
       <button type="button" onClick={onArchivedAll} className="callerButton">
         <HiOutlineArchive className="caller-icon" />
         Archive all missed calls
@@ -36,7 +40,7 @@ function MissedCalls({ calls, setCalls }) {
             />
           ))}
       </ul>
-    </div>
+    </CallListContainer>
   );
 }
 

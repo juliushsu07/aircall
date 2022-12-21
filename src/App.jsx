@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./Header.jsx";
 import MissedCalls from "./components/MissedCalls.jsx";
-import AllCalls from "./components/UnArchived.jsx";
-import UnArchived from "./components/ArchivedCalls.jsx";
+import AllCalls from "./components/UnArchivedCalls.jsx";
+import UnArchivedCalls from "./components/ArchivedCalls.jsx";
 import axios from "axios";
 
 const App = () => {
@@ -31,7 +31,7 @@ const App = () => {
           <Routes>
           <Route path="/" element={<MissedCalls calls={calls} setCalls={setCalls}/>} />
             <Route path="/allcalls" element={<AllCalls calls={calls} setCalls={setCalls}/>} />
-            <Route path="/archived" element={<UnArchived calls={calls} setCalls={setCalls}/>} />
+            <Route path="/archived" element={<UnArchivedCalls calls={calls} setCalls={setCalls}/>} />
           </Routes>
         </div>
       </Router>

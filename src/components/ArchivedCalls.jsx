@@ -2,11 +2,13 @@ import React from "react";
 import useFilterCalls from "../hooks/useFilterCalls.js";
 import CallItem from "./CallItem.jsx";
 
+import { CallListContainer } from "./styles/CallListContainer.styles";
+
 function ArchivedCalls({ calls }) {
   const { archived } = useFilterCalls();
 
   return (
-    <div>
+    <CallListContainer>
       <ul>
         {calls &&
           archived(calls).map((call) => (
@@ -22,7 +24,7 @@ function ArchivedCalls({ calls }) {
             />
           ))}
       </ul>
-    </div>
+    </CallListContainer>
   );
 }
 

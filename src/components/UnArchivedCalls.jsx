@@ -4,9 +4,11 @@ import CallItem from "./CallItem.jsx";
 
 import { HiOutlineArchive } from "react-icons/hi";
 
-function UnArchived({ calls, setCalls }) {
+import { CallListContainer } from "./styles/CallListContainer.styles";
+
+function UnArchivedCall({ calls, setCalls }) {
   const { allUnarchived } = useFilterCalls();
-  
+
   const onArchivedAll = () => {
     allUnarchived(calls).map((call) => {
       call.is_archived = "archived";
@@ -15,7 +17,7 @@ function UnArchived({ calls, setCalls }) {
   };
 
   return (
-    <div>
+    <CallListContainer>
       <button type="button" onClick={onArchivedAll} className="callerButton">
         <HiOutlineArchive className="caller-icon" />
         Archive all calls
@@ -35,8 +37,8 @@ function UnArchived({ calls, setCalls }) {
             />
           ))}
       </ul>
-    </div>
+    </CallListContainer>
   );
 }
 
-export default UnArchived;
+export default UnArchivedCall;
