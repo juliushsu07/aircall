@@ -1,4 +1,4 @@
-function useFilterCalls(calls) {
+function useFilterCalls() {
   const all = (calls) => {
     return calls;
   };

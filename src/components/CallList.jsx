@@ -2,24 +2,11 @@ import React, { useState, useEffect } from "react";
 import { HiOutlineArchive } from "react-icons/hi";
 import useFilterCalls from "../hooks/useFilterCalls.js";
 import MissedCalls from "./MissedCalls.jsx";
-import axios from "axios";
 
-function CallList() {
-  const [calls, setCalls] = useState();
 
-  const { all, missedInboundUnarchived } = useFilterCalls(calls);
-
-  useEffect(() => {
-    axios
-      .get(
-        "https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities"
-      )
-      .then((res) => {
-        const calls = [...res.data];
-        setCalls(calls);
-      });
-  }, []);
-
+function CallList({calls}) {
+  const { all, missedInboundUnarchived } = useFilterCalls();
+  
   return (
     <div>
       <button type="button" className="callerButton">
