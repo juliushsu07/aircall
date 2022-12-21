@@ -1,6 +1,8 @@
 function useFilterCalls() {
-  const all = (calls) => {
-    return calls;
+  const allUnarchived = (calls) => {
+    return calls.filter((call) => {
+      return !call.is_archived;
+    });
   };
 
   const missedInboundUnarchived = (calls) => {
@@ -19,7 +21,7 @@ function useFilterCalls() {
     });
   };
 
-  return { all, missedInboundUnarchived, archived };
+  return { allUnarchived, missedInboundUnarchived, archived };
 }
 
 export default useFilterCalls;

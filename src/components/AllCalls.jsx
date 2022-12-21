@@ -4,14 +4,17 @@ import useFilterCalls from "../hooks/useFilterCalls.js";
 import CallItem from "./CallItem.jsx";
 
 function AllCalls({ calls }) {
-  const { all } = useFilterCalls();
+  const { allUnarchived } = useFilterCalls();
 
   return (
     <div>
-        {/* All CALLS! */}
+      <button type="button" className="callerButton">
+        <HiOutlineArchive className="caller-icon" />
+        Archive all calls
+      </button>
       <ul>
         {calls &&
-          all(calls).map((call) => (
+          allUnarchived(calls).map((call) => (
             <CallItem
               key={call.id}
               direction={call.direction}
