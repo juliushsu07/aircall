@@ -18,7 +18,7 @@ function MissedCalls({ calls, setCalls }) {
     <div>
       <button type="button" onClick={onArchivedAll} className="callerButton">
         <HiOutlineArchive className="caller-icon" />
-        Archive all calls
+        Archive all missed calls
       </button>
 
       <ul>
