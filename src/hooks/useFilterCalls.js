@@ -13,7 +13,13 @@ function useFilterCalls() {
     });
   };
 
-  return { all, missedInboundUnarchived };
+  const archived = (calls) => {
+    return calls.filter((call) => {
+      return call.is_archived;
+    });
+  };
+
+  return { all, missedInboundUnarchived, archived };
 }
 
 export default useFilterCalls;

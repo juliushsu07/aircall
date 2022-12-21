@@ -20,7 +20,8 @@ const Header = () => {
         </g>
       </svg>
         <Link to="/">Inbox</Link>
-        <Link to="/archived">All Calls</Link>
+        <Link to="/allcalls">All Calls</Link>
+        <Link to="/archived">Archived</Link>
     </header>
   );
 };

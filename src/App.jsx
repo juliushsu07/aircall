@@ -3,7 +3,9 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./Header.jsx";
-import CallList from "./components/CallList.jsx";
+import MissedCalls from "./components/MissedCalls.jsx";
+import AllCalls from "./components/AllCalls.jsx";
+import ArchivedCalls from "./components/ArchivedCalls.jsx";
 import axios from "axios";
 
 const App = () => {
@@ -18,7 +20,7 @@ const App = () => {
         const calls = [...res.data];
         setCalls(calls);
       });
-  }, []);
+  }, [calls]);
 
   return (
     <div className="container">
@@ -26,8 +28,9 @@ const App = () => {
         <Header />
         <div className="container-view">
           <Routes>
-            <Route path="/" element={<CallList calls={calls} />} />
-            <Route path="/allcalls" element={<CallList />} />
+          <Route path="/" element={<MissedCalls calls={calls} />} />
+            <Route path="/allcalls" element={<AllCalls calls={calls} />} />
+            <Route path="/archived" element={<ArchivedCalls calls={calls} />} />
           </Routes>
         </div>
       </Router>
