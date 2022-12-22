@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Link} from 'react-router-dom'
 import moment from "moment/moment";
 
 import { BsFillTelephoneInboundFill, BsFillTelephoneOutboundFill, BsVoicemail } from "react-icons/bs";
@@ -40,9 +39,9 @@ const Time = styled.div`
 `;
 
 
-function CallItem({id, via, created_at, call_type, direction, from, to, duration, is_archived, onArchive, actionType}) {
+function CallItem({id, via, created_at, call_type, direction, from, to, onArchive, buttonType}) {
   const date = moment.utc(created_at).format("MMMM, DD YYYY");
-  const time = moment.utc(created_at).format("hh:mmA", { trim: false });
+  const time = moment.utc(created_at).format("hh:mm:A", { trim: false });
   
   const inbound = direction==='inbound';
   const outbound = direction==='outbound'; 
@@ -86,21 +85,7 @@ function CallItem({id, via, created_at, call_type, direction, from, to, duration
             {outboundVoiced && "voicemailed on " + via }
           </p>
         </div>
-        <Link onClick={updateArchive}>{actionType}</Link>
-        <Link to={"/details/"+id} state={{
-          direction: direction,
-          from: from,
-          to: to,
-          via: via,
-          duration: duration,
-          is_archived: is_archived,
-          date: date,
-          time: time,
-          call_type: call_type,
-        }} 
-        >Details
-        </Link>
-
+        <button onClick={updateArchive}>{buttonType}</button>
         <Time>{time}</Time>
       </CallItemContainer>
     </div>
