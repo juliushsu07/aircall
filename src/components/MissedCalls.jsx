@@ -32,6 +32,7 @@ function MissedCalls({ calls, setCalls }) {
               key={call.id}
               direction={call.direction}
               from={call.from}
+              to={call.to}
               via={call.via}
               duration={call.duration}
               call_type={call.call_type}
