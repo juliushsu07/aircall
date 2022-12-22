@@ -25,8 +25,6 @@ const App = () => {
       .catch((err) => console.log(err.response));
   }, []);
 
-  console.log(location.pathname)
-
   return (
     <div className="container">
       <Router>

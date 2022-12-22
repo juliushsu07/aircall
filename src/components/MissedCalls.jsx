@@ -11,6 +11,22 @@ import { CallListContainer } from "./styles/CallListContainer.styles";
 function MissedCalls({ calls, setCalls }) {
   const { missedInboundUnarchived } = useFilterCalls();
 
+  // Axios POST request to Update All archive status
+  
+  /*  const onArchivedAll = () => {
+        missedInboundUnarchived(calls).map(call => {
+          call.is_archived = true;
+        })
+        axios.patch('https://cors-anywhere.herokuapp.com/https://cerulean-marlin-wig.cyclic.app/activities',{
+          calls : missedInboundUnarchived(calls)
+        })
+        .then( (res) => {
+          setCalls([...calls]);
+        })
+        .catch( err => console.log(err.response));
+        };
+  */
+
   const onArchivedAll = () => {
     missedInboundUnarchived(calls).map((call) => {
       call.is_archived = true;
