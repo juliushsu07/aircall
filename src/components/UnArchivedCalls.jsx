@@ -18,7 +18,7 @@ function UnArchivedCall({ calls, setCalls }) {
   };
 
   const updateArchived = (id) => {
-    axios.patch('http://cors-anywhere.herokuapp.com/https://cerulean-marlin-wig.cyclic.app/activities/'+id,{
+    axios.patch('https://cors-anywhere.herokuapp.com/https://cerulean-marlin-wig.cyclic.app/activities/'+id,{
       is_archived: true
     })
       .then( (res) => {
