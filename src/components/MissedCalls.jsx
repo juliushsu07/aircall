@@ -17,13 +17,21 @@ function MissedCalls({ calls, setCalls }) {
     });
     setCalls([...calls]);
   };
-
-  const updateArchived = (id) => {
-    missedInboundUnarchived(calls).map((call) => {
-      if (id === call.id)
-      call.is_archived = true;
-    });
-    setCalls([...calls]);
+  
+    const updateArchived = (id) => {
+    axios.patch('http://cors-anywhere.herokuapp.com/https://cerulean-marlin-wig.cyclic.app/activities/'+id,{
+      is_archived: true
+    })
+      .then( (res) => {
+        console.log(res)
+        missedInboundUnarchived(calls).map((call) => {
+          if (id === call.id)
+          call.is_archived = true;
+          alert
+        });
+        setCalls([...calls]);
+      })
+      .catch( err => console.log(err.response));
   }
 
   return (

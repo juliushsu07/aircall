@@ -1,6 +1,7 @@
 import React from "react";
 import useFilterCalls from "../hooks/useFilterCalls.js";
 import CallItem from "./CallItem.jsx";
+import axios from "axios";
 
 import { HiOutlineArchive } from "react-icons/hi";
 
@@ -17,11 +18,17 @@ function UnArchivedCall({ calls, setCalls }) {
   };
 
   const updateArchived = (id) => {
-    allUnarchived(calls).map((call) => {
-      if (id === call.id)
-      call.is_archived = true;
-    });
-    setCalls([...calls]);
+    axios.patch('http://cors-anywhere.herokuapp.com/https://cerulean-marlin-wig.cyclic.app/activities/'+id,{
+      is_archived: true
+    })
+      .then( (res) => {
+        allUnarchived(calls).map((call) => {
+          if (id === call.id)
+          call.is_archived = true;
+        });
+        setCalls([...calls]);
+      })
+      .catch( err => console.log(err.response));
   }
 
   return (
