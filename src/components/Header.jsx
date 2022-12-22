@@ -10,7 +10,7 @@ const NavBar = styled.nav`
 `;
 
 const Header = () => {
-  const [activeNav, setActiveNav] = useState('/') 
+  const [activeNav, setActiveNav] = useState(location.pathname) 
 
   return (
     <header>
@@ -30,9 +30,9 @@ const Header = () => {
         </g>
       </svg>
       <NavBar>
-        <Link to="/" onClick={()=> setActiveNav('/')} className={activeNav === '/' ? 'active' : ''}>Inbox</Link>
-        <Link to="/allcalls" onClick={()=> setActiveNav('/allcalls')} className={activeNav === '/allcalls' ? 'active' : ''}>All Calls</Link>
-        <Link to="/archived" onClick={()=> setActiveNav('/archived')} className={activeNav === '/archived' ? 'active' : ''}>Archived</Link>
+        <Link to="/" onClick={()=> setActiveNav("/")} className={activeNav === '/' ? 'active' : ''}>Inbox</Link>
+        <Link to="/allcalls" onClick={()=> setActiveNav("/allcalls")} className={activeNav === '/allcalls' ? 'active' : ''}>All Calls</Link>
+        <Link to="/archived" onClick={()=> setActiveNav("/archived")} className={activeNav === '/archived' ? 'active' : ''}>Archived</Link>
       </NavBar>
       
     </header>

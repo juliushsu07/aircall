@@ -23,11 +23,9 @@ function MissedCalls({ calls, setCalls }) {
       is_archived: true
     })
       .then( (res) => {
-        console.log(res)
         missedInboundUnarchived(calls).map((call) => {
           if (id === call.id)
           call.is_archived = true;
-          alert
         });
         setCalls([...calls]);
       })
