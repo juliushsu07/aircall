@@ -45,7 +45,7 @@ function UnArchivedCall({ calls, setCalls }) {
               is_archived={call.is_archived}
               created_at={call.created_at}
               onArchive={updateArchived}
-              buttonType={"Archive"}
+              actionType={"Archive"}
             />
           ))}
       </ul>

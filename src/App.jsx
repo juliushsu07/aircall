@@ -6,7 +6,9 @@ import Header from "./components/Header.jsx";
 import MissedCalls from "./components/MissedCalls.jsx";
 import AllCalls from "./components/UnArchivedCalls.jsx";
 import UnArchivedCalls from "./components/ArchivedCalls.jsx";
+import CallItem from "./components/CallItem.jsx";
 import axios from "axios";
+import CallDetails from "./components/CallDetails.jsx";
 
 const App = () => {
   const [calls, setCalls] = useState();
@@ -32,6 +34,7 @@ const App = () => {
           <Route path="/" element={<MissedCalls calls={calls} setCalls={setCalls}/>} />
             <Route path="/allcalls" element={<AllCalls calls={calls} setCalls={setCalls}/>} />
             <Route path="/archived" element={<UnArchivedCalls calls={calls} setCalls={setCalls}/>} />
+            <Route path="/details/:id" element={<CallDetails/>} />
           </Routes>
         </div>
       </Router>
