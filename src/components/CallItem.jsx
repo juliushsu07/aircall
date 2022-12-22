@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import moment from "moment/moment";
 
 import { BsFillTelephoneInboundFill, BsFillTelephoneOutboundFill, BsVoicemail } from "react-icons/bs";
@@ -39,7 +39,7 @@ const Time = styled.div`
 `;
 
 
-function CallItem({ from, via, created_at, call_type, direction, to}) {
+function CallItem({id, via, created_at, call_type, direction, from, to, onArchive, buttonType}) {
   const date = moment.utc(created_at).format("MMMM, DD YYYY");
   const time = moment.utc(created_at).format("hh:mm:A", { trim: false });
   
@@ -53,6 +53,10 @@ function CallItem({ from, via, created_at, call_type, direction, to}) {
   const inboundVoiced = call_type==='voicemail' && direction==='inbound';
   const outboundVoiced = call_type==='voicemail' && direction==='outbound';
   const unknown = call_type===undefined || direction===undefined;
+
+  const updateArchive = () => {
+    onArchive(id)
+  };
 
   return (
     <div>
@@ -81,6 +85,7 @@ function CallItem({ from, via, created_at, call_type, direction, to}) {
             {outboundVoiced && "voicemailed on " + via }
           </p>
         </div>
+        <button onClick={updateArchive}>{buttonType}</button>
         <Time>{time}</Time>
       </CallItemContainer>
     </div>

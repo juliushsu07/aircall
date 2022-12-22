@@ -13,10 +13,18 @@ function MissedCalls({ calls, setCalls }) {
 
   const onArchivedAll = () => {
     missedInboundUnarchived(calls).map((call) => {
-      call.is_archived = "archived";
+      call.is_archived = true;
     });
     setCalls([...calls]);
   };
+
+  const updateArchived = (id) => {
+    missedInboundUnarchived(calls).map((call) => {
+      if (id === call.id)
+      call.is_archived = true;
+    });
+    setCalls([...calls]);
+  }
 
   return (
     <CallListContainer>
@@ -26,10 +34,11 @@ function MissedCalls({ calls, setCalls }) {
       </button>
 
       <ul>
-        {calls &&
-          missedInboundUnarchived(calls).map((call) => (
+      {calls &&
+          missedInboundUnarchived(calls).map((call, i) => (
             <CallItem
-              key={call.id}
+              key={i}
+              id={call.id}
               direction={call.direction}
               from={call.from}
               to={call.to}
@@ -38,6 +47,8 @@ function MissedCalls({ calls, setCalls }) {
               call_type={call.call_type}
               is_archived={call.is_archived}
               created_at={call.created_at}
+              onArchive={updateArchived}
+              buttonType={"Archive"}
             />
           ))}
       </ul>

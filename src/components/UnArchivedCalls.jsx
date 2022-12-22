@@ -9,24 +9,33 @@ import { CallListContainer } from "./styles/CallListContainer.styles";
 function UnArchivedCall({ calls, setCalls }) {
   const { allUnarchived } = useFilterCalls();
 
-  const onArchivedAll = () => {
+  const updateAllArchived = () => {
     allUnarchived(calls).map((call) => {
-      call.is_archived = "archived";
+      call.is_archived = true;
     });
     setCalls([...calls]);
   };
 
+  const updateArchived = (id) => {
+    allUnarchived(calls).map((call) => {
+      if (id === call.id)
+      call.is_archived = true;
+    });
+    setCalls([...calls]);
+  }
+
   return (
     <CallListContainer>
-      <button type="button" onClick={onArchivedAll} className="callerButton">
+      <button type="button" onClick={updateAllArchived} className="callerButton">
         <HiOutlineArchive className="caller-icon" />
         Archive all calls
       </button>
       <ul>
         {calls &&
-          allUnarchived(calls).map((call) => (
+          allUnarchived(calls).map((call, i) => (
             <CallItem
-              key={call.id}
+              key={i}
+              id={call.id}
               direction={call.direction}
               from={call.from}
               to={call.to}
@@ -35,6 +44,8 @@ function UnArchivedCall({ calls, setCalls }) {
               call_type={call.call_type}
               is_archived={call.is_archived}
               created_at={call.created_at}
+              onArchive={updateArchived}
+              buttonType={"Archive"}
             />
           ))}
       </ul>
